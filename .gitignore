@@ -1,3 +1,6 @@
 dev-associate/*.log
 dev-associate/*.aux
 dev-associate/*.gz
+solutions-architect/*.log
+solutions-architect/*.aux
+solutions-architect/*.gz
