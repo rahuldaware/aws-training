@@ -51,4 +51,43 @@ Roles - You create roles and assign them to AWS resources
 Policies - A document that defines one or more permissions
 
 \end{itemize}
+
+\section*{Summary}
+IAM consists of the following:
+\begin{itemize}
+
+\item
+Users
+
+\item
+Groups (A way to group our users and apply policies to them collectively)
+
+\item
+Roles
+
+\item
+Policy Documents (Made of JSON)
+
+\item
+IAM is universal. It does not apply to regions at this time
+
+\item
+Root account is simply the account created when first setup your AWS account. It has complete Admin access.
+
+\item 
+New users are assigned \textbf{Access Key ID and Secret Access Keys} when first created
+
+\item 
+These are not the same as password, and you cannot use the access key ID and secret access key to login to the console. You can use this to access AWS via the APIs and command line however
+
+\item
+Always setup multifactor authentication on your root account
+
+\item
+You can create and customise your own password rotation policies
+
+\end{itemize}
+
+
+
 \end{document}
