@@ -1,5 +1,51 @@
 \documentclass{report}
+\usepackage{hyperref}
 \author{Rahul Daware}
 \begin{document}
+\title{Chapter 4: S3}
+\maketitle
 
+\section*{What is S3?}
+S3 provides developers and IT teams with secure, durable, highly scalable object storage. Amazon S3 is easy to use, with a simple web services interface to store and retrieve any amount of data from anywhere on the web. S3 is a safe place to store your files. It is object based storage. The date is spread across multiple devices and facilities.
+
+\section*{S3 - The Basics}
+\begin{itemize}
+\item
+S3 is object based - i.e. allows you to upload files
+
+\item
+Files can be from 0 bytes to 5 TB.
+
+\item
+There is unlimited storage.
+
+\item
+Files are stored in buckets. (Buckets are folder in cloud. Each bucket has universal namespace. Each bucket will have a DNS address. Bucket names have to unique.
+
+\item
+S3 is a universal namespace. i.e. names must be unique globally.
+
+\item
+URL look like this : https://s3-eu-west-1.amazonaws.com/acloudguru
+
+\item
+When you upload a file to S3, you will receive a HTTP 200 if the upload was successful
+
+\end{itemize}
+
+\section*{Data Consistency Model for S3}
+\begin{itemize}
+\item
+Read after write consistency for PUTS of new objects
+
+\item
+Eventual consistency for overwrite PUTS and DELETES (can take some time to propogate)
+\end{itemize}
+
+\section*{S3 is a simple key-value store}
+S3 is object based. Objects consists of the following:
+\begin{itemize}
+\item
+Key (This is simply name of the object
+\end{itemize}
 \end{document}
