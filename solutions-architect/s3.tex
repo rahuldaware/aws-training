@@ -31,6 +31,30 @@ URL look like this : https://s3-eu-west-1.amazonaws.com/acloudguru
 \item
 When you upload a file to S3, you will receive a HTTP 200 if the upload was successful
 
+\item
+Built for 99.99\% availability for the S# platform
+
+\item
+Amazon guarantee 99.9\% availability
+
+\item
+Amazon guarantees 11 9s durability for S3 information
+
+\item
+Tiered Storage available
+
+\item
+Lifecycle Management
+
+\item
+Versioning
+
+\item
+Encryption
+
+\item
+Secure your data using Access Control Lists and Bucket Policies
+
 \end{itemize}
 
 \section*{Data Consistency Model for S3}
@@ -47,5 +71,146 @@ S3 is object based. Objects consists of the following:
 \begin{itemize}
 \item
 Key (This is simply name of the object
+\item
+Value ((This is simply the data and is made up of a sequence of bytes
+\item
+Version ID (Important for versioning)
+\item
+Metadata (Data about data you are storing)
+\item
+Subresources
+	\begin{itemize}
+	\item
+	Access Control Lists
+	
+	\item
+	Torrent
+	
+	\end{itemize}
+\end{itemize}
+
+\section*{S3 - Storage Tiers/Classes}
+\begin{itemize}
+\item
+\textbf{S3 Standard} : 99.99\% availability 11 9s durability, stored redundantly across multiple facilities, and is designed to sustain the loss of 2 facilities concurrently.
+
+\item
+\textbf{S3 -IA} : (Infrequently Accessed): For data that is accessed less frequently, but requires rapid access when needed. Lower fee than S3, but you are charged a retrieval fee.
+
+\item
+\textbf{S3 One Zone - IA} Want a lower cost option for infrequently accessed data, but do not require the multiple availability zone data resilience.
+
+\item
+\textbf{Glacier} Very cheap, but used for archival only. Expedited, standard or bulk. A standard retrievel time takes 3-5 hours.
+\end{itemize}
+
+\section*{S3 - Charges}
+Charged for:
+\begin{itemize}
+\item
+Storage (Per GB basis)
+
+\item
+Requests (No. of requests)
+
+\item
+Storage Management Pricing ( Charged for tags on data)
+
+\item
+Data Transfer Pricing (Transferring data from one region to other)
+
+\item
+Transfer Acceleration : Amazon S3 Transfer acceleration enables fast, easy and secure transfers of files over long distances between your end users and an S3 bucket. Transfer acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. AS the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.
+\end{itemize}
+
+\section*{S3 Exam Tips for S3 101}
+\begin{itemize}
+\item
+Remember that S3 is object based. i.e. allows you to upload files
+
+\item
+Files can be from 0 bytes to 5 TB
+
+\item
+There is unlimited storage.
+
+\item
+Files are stored in buckets
+
+\item
+S3 is a universal namespace. That is names must be unique globally
+
+\item
+Read afte write consistency for PUTS of new objects
+
+\item
+Eventual Consistency for overwrite PUTS and DELETES (can take some time to propogate)
+
+\item
+Storage Classes/Tiers:
+	\begin{itemize}
+	\item
+	S3 (durable, immediately available, frequently accessed)
+	
+	\item
+	S3 -IA (Durable, immediately available, infrequently accessed)
+	
+	\item
+	S3 One Zone - IA (event chaeaper than IA, but onle in one AZ)
+	
+	\item
+	Glacier - Achived data, where you cn wait 3-5hours before accessing
+	\end{itemize}
+
+\item
+Remember core fundamentals of S3 object - Key (name), Value (data) , Version ID, Metadata, Subresources (ACL, Torrent)
+
+\item
+Object based storage only (for files)
+
+\item
+Not suitable to install an operating system on
+
+\item
+Successful uploads give HTTP 200 response
+
+\end{itemize}
+
+\section*{Create an S3 Bucket - Exam Tips}
+\begin{itemize}
+\item
+Buckets are a univeral name space
+
+\item
+Upload an object to S3 receive a HTTP 200 code
+
+\item
+S3, S3 -IA, S3 - One Zone IA, S3 Reduced Redundancy Storage
+
+\item
+Encryption
+	\begin{itemize}
+	\item
+	Client Side Encryption
+	
+	\item
+	Server Side Encryption with Amazon S3 Managed Keys (SSE-S3), Server Side Encryption with KMS (SSE-KMS), Server Side Encryption with Customer provided keys (SSE-C)
+	\end{itemize}
+
+\item
+Control access to buckets using either a bucket ACL or using bucket policies
+
+\item
+By Default buckets are private and all objects stored inside them are private
+
+\end{itemize}
+
+\section*{Notes}
+\begin{itemize}
+\item
+Read the S3 FAQs before taking the exam. It comes up a lot.
+
+
+
 \end{itemize}
 \end{document}
