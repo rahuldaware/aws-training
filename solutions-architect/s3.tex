@@ -1,14 +1,23 @@
-\documentclass{report}
+\documentclass{article}
 \usepackage{hyperref}
+\usepackage{color}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\pagestyle{plain}
 \author{Rahul Daware}
 \begin{document}
 \title{Chapter 4: S3}
 \maketitle
+\tableofcontents
+\newpage
 
-\section*{What is S3?}
+\section{What is S3?}
 S3 provides developers and IT teams with secure, durable, highly scalable object storage. Amazon S3 is easy to use, with a simple web services interface to store and retrieve any amount of data from anywhere on the web. S3 is a safe place to store your files. It is object based storage. The date is spread across multiple devices and facilities.
 
-\section*{S3 - The Basics}
+\section{S3 - The Basics}
 \begin{itemize}
 \item
 S3 is object based - i.e. allows you to upload files
@@ -57,7 +66,7 @@ Secure your data using Access Control Lists and Bucket Policies
 
 \end{itemize}
 
-\section*{Data Consistency Model for S3}
+\section{Data Consistency Model for S3}
 \begin{itemize}
 \item
 Read after write consistency for PUTS of new objects
@@ -66,7 +75,7 @@ Read after write consistency for PUTS of new objects
 Eventual consistency for overwrite PUTS and DELETES (can take some time to propogate)
 \end{itemize}
 
-\section*{S3 is a simple key-value store}
+\section{S3 is a simple key-value store}
 S3 is object based. Objects consists of the following:
 \begin{itemize}
 \item
@@ -89,7 +98,7 @@ Subresources
 	\end{itemize}
 \end{itemize}
 
-\section*{S3 - Storage Tiers/Classes}
+\section{S3 - Storage Tiers/Classes}
 \begin{itemize}
 \item
 \textbf{S3 Standard} : 99.99\% availability 11 9s durability, stored redundantly across multiple facilities, and is designed to sustain the loss of 2 facilities concurrently.
@@ -104,7 +113,7 @@ Subresources
 \textbf{Glacier} Very cheap, but used for archival only. Expedited, standard or bulk. A standard retrievel time takes 3-5 hours.
 \end{itemize}
 
-\section*{S3 - Charges}
+\section{S3 - Charges}
 Charged for:
 \begin{itemize}
 \item
@@ -123,7 +132,7 @@ Data Transfer Pricing (Transferring data from one region to other)
 Transfer Acceleration : Amazon S3 Transfer acceleration enables fast, easy and secure transfers of files over long distances between your end users and an S3 bucket. Transfer acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. AS the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.
 \end{itemize}
 
-\section*{S3 Exam Tips for S3 101}
+\section{S3 Exam Tips for S3 101}
 \begin{itemize}
 \item
 Remember that S3 is object based. i.e. allows you to upload files
@@ -176,7 +185,7 @@ Successful uploads give HTTP 200 response
 
 \end{itemize}
 
-\section*{Create an S3 Bucket - Exam Tips}
+\section{Create an S3 Bucket - Exam Tips}
 \begin{itemize}
 \item
 Buckets are a univeral name space
@@ -205,7 +214,7 @@ By Default buckets are private and all objects stored inside them are private
 
 \end{itemize}
 
-\section*{S3 Versioning - Exam Tips}
+\section{S3 Versioning - Exam Tips}
 \begin{itemize}
 \item
 Stores all versions of an object (including all writes and even if you delete an object)
@@ -223,7 +232,7 @@ Integrates with lifecycle rules
 Versioning's MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security
 \end{itemize}
 
-\section*{S3 - Cross Region Replication Exam Tips}
+\section{S3 - Cross Region Replication Exam Tips}
 \begin{itemize}
 \item
 Versioning must be enabled on both the source and destination buckets
@@ -248,7 +257,7 @@ Understand what cross region replication is at high level
 
 \end{itemize}
 
-\section*{S3 Lifecycle Management Lab}
+\section{S3 Lifecycle Management Lab}
 \begin{itemize}
 
 \item
@@ -273,11 +282,216 @@ Following actions can now be done:
 
 \end{itemize}
 
-\section*{Notes}
+\section{Cloudfront}
+
+\textbf{What is a CDN?} \\
+A Content Delivery Network (CDN) is a system of distributed servers (network) that delivers webpages and other web content to a user based on the geographic locations of the user, the origin of the webpage and a content delivery server
+
+\begin{itemize}
+\item
+\textbf{Edge Location} - This is the location where the content will be cached. This is seperate to an AWS Region/AZ
+
+\item
+\textbf{Origin} - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucker, an EC2 instance, an elastic load balancer or Route53
+
+\item
+\textbf{Distribution} This is the name given the CDN consists of a collection of Edge locations
+\end{itemize}
+
+\textbf{What is CloudFront} \\
+Amazon CloudFront can be used to deliver your entire website, including dynamic, static, streaming, and interactive content using a global network of edge locations.Requests for your content are automatically routed to the nearest edge location, so content is delivered with best possible performance. Amazon CloudFront is optimized to work with other Amazon Web Services, like Amazon Simple Storage Service (Amazon S3), Amazon Elastic Compute Cloud (Amazon EC2), Amazon Elastic Load Balancing, and Amazon Route 53. Amazon CloudFront also works seamlessly with any non AWS origin server, which stors the original, definitive versions of your files. \\
+
+
+\textbf{Key Terminology} \\
+\begin{itemize}
+\item
+Web Distribution - Typically used for websites
+
+\item
+RTMP - Used for media streaming
+
+\item
+Edge locations are not just READ only, you can write to them too.(i.e. put an object on to them)
+
+\item
+Objects are cached for the life of the TTL
+
+\item
+You can clear cached objects, but you will be charged.
+
+\end{itemize}
+
+\section{S3 - Security and Encryption}
+\begin{itemize}
+\item
+By default, all newly created buckets are PRIVATE
+
+\item
+You can setup acess control to your buckets using:
+	\begin{itemize}
+	\item
+	Bucket Policies
+	
+	\item
+	Access Control Lists
+	\end{itemize}
+
+\item
+S3 buckets can be configured to create access logs. This can be done to another bucket
+
+\item
+Four different methods of encryption in S3:
+	\begin{itemize}
+	\item
+	In Transit - SSL/TLS
+	
+	\item
+	At Rest
+		\begin{itemize}
+		\item
+		Server Side Encryption
+			\begin{itemize}
+			\item
+			S3 Managed Keys - \textbf{SSE-S3}
+			
+			\item
+			AWS Key Management Service, MAnaged Keys - \textbf{SSE-KMS}
+			
+			\item
+			Server Side Encryption with customer provided keys - \textbf{SSE-C}
+			\end{itemize}
+			
+		\item
+		Client side Encryption
+	
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\section{Storage Gateway}
+
+AWS Storage Gateway is a service that connects an on-premise software appliance with cloud-based storage to provide seamless and secure integration between an oragnization's on-premise IT environment and AWS's storage infrastructure. The service enables you to securely store date to the AWS cloud for scalable and cost effective storage.\\
+
+\noindent
+AWS Storage Gateway's software appliance is available for download as a virtual machine VM image that you install on a host in your datacenter. Storage Gateway supports either VMWare ESXi or Microsoft Hyper-V. Once you have installed your gatewat and associated it with your AWS account through the activation process, you can use the AWS Management Console to create the storage gateway option that is right for you.\\
+
+Four Types of Storage Gateways: 
+\begin{itemize}
+	\item
+	File Gateway (NFS) \textcolor{red}{New}
+	
+	\item
+	Volumes Gateway (iSCSI)
+	\begin{itemize}
+		\item
+		Stored Volumes	\textcolor{red}{Gateway Stored Volumes}
+		
+		\item
+		Cached Volumes  \textcolor{red}{Gateway Cached Volumes}
+	\end{itemize}
+	
+	\item
+	Tape Gateway (VTL) \textcolor{red}{Gateway Virtual Tape Library}
+\end{itemize}
+
+\subsection{Gateway}
+Files are stored as objects in your S3 buckets, accessed through a Network File System (NFS) mount point. Ownership, permission, and timestamps are durably stored in S3 in the user-metadata of the object associated with the file. Once the objects are transferred to S3, they can be managed as native S3 objects, and bucket policies such has versioning, lifecycle management, and cross-region replication apply directly to objects stored in your bucket. \\
+
+
+\subsection{Volume Gateway}
+The volume interface presents your applications with disk volumes using the iSCSI block protocol. Data written to these volumes can be asynchronously backed up as point in time snapshots of your volumes, and stored in the cloud as Amazon EBS (Elastic Block Store) snapshots. Snapshots are incremental backups that capture only changed blocks. All snapshot storage is also compressed to minimized your storage charges.\\
+
+\noindent
+\textbf{Stored Volumes}\\
+\noindent
+Stored Volumes let you store your primary data locally, while asynchronouslt backing up that data to AWs. Stored volumes provide your on-primies applications with lo latency access to their entire datasets, while providing durable, off-site backups. You can create storage volumes and mount them as iSCSI devices from your on premises application servers. Data written to your stored volumes is stored on your on-premises storage hardware. This data is asynchronously backed up to Amazon Simple Storage Service (Amazon S3) in the form of Amazon Elastic Block Store (Amazon EBS) snapshots. 1 GB - 16TB in size of Stored Volumes. \\
+
+\noindent
+\textbf{Cached Volumes}\\
+\noindent
+Cached volumes let you use Amazon Simple Storage Service (S3) as your primary data storage while retaining frequently accessed data locally in your storage gateway. Cached volumes minimize the need to scale your on-premises storage infrastructure, while still providing your applications with low latency access to their freuently accessed data. You can create storage volumes up to 32 TB in size and attach to them as iSCSI devices from your on-premises aplication servers. Your gateway stores data that you write to these volumes in Amazon S3 and retains recently read data in your on-premises storage gateway's cache and upload buffer storage. 1GB -32TB in size for cached volumes. \\
+
+\noindent
+\textbf{Tape Gateway}\\
+\noindent
+Tape Gateway offers a durable, cost-effective solution to archive your data in the AWS cloud. The VTL interface it provides lets you leverage your existing tape-based backup application infrastructure to store your date on virtual tape cartridges that you create on your tape gateway. Each tape gateway is preconfigured with a media changer and tape drives, which are available to your existing client backup applications as iSCSCI devices. You add tape cartridges as you need to archive your data. Supported by NetBackup, Backup Exec, Veeam etc. \\
+
+\subsection*{Storage Gateway - Exam Tips}
+\begin{itemize}
+\item
+\textbf{File Gateway} - For flat files, stored directly on S3.
+\item
+\textbf{Volume Gateway}
+	\begin{itemize}
+	\item
+	Stored Volumes - Entire dataset is stored on site and is asynchronously backed up to S3
+
+	\item
+	Cached Volumes - Entire dataset is stored on S3 and the most frequently access data is cached on site
+	\end{itemize}
+\item
+\textbf{Gateway Virtual Tape Library (VTL)} - Used for backup and uses popular backup applications like NetBackup, Backup Exec, Veeam etc.
+\end{itemize}
+
+
+\section{Snowball - Import Export Disc}
+AWS Import/Export Disk accelerates moving large amounts of data into and out of the AWS cloud using portable storage devices for transport. AWS Import/Export disk transfers your data directly onto and off of storage devices using Amazon's high speed internal network and bypassing the internet. \\
+
+\textbf{Types of Snowballs}
+\begin{itemize}
+
+\item
+Snowball
+
+\item
+Snowball Edge
+
+\item
+Snowmobile
+\end{itemize}
+
+\subsection{Snowball}
+Snowball is a petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data into and out of AWS. Using Snowball addresses common challenges with large scale data transfers including high network costs, lon transfer times and security concerns. Transferring data with snowall is simple, fast ans secure and ca n e as little as one-fifth the cost of high speed internet.
+
+80 TB snowball in all regions. Snowball uses multiple layers of security designed to protect your data including tamper-resistant enclosures, 256-bit encryption, and an industry-standard Trusted Platform Module (TPM) designed to ensure both security and full chain of custody of your data. Once the data transfer job has been processed and verified, AWS performs a software erasure of the Snowball appliance.
+
+\subsection{Snowball Edge}
+AWS Snowball Edge is a 100TB data transfer device with on board storage and compute capabilities. You can use Snowball Edge to move large amounts of data into and out of AWS, as a temporary storage tier for large local datasets, or to support local workloads in remote or offline locations.
+
+Snowball Edge connects to your existing applications and infrastructure using standard storage interfaces, streamlining the data transfer process and miniizing setup and integration. Snowball Edge can cluster together to form a local storage tier and processs your data on-premises, helping ensure your applications continue to run even when they are not able to access the cloud.
+
+\subsection{Snowmobile}
+AWS Snowmobile is an exabyte scale data trsnfer service used to move extremely large amounts of data to AWS. You can transfer up to 100 PB per snowmobile, a 45-foot long ruggedized shipping container, pulled by a semi trailer truck. Snowmobile makes it eas to move massive volumes of data to the cloud, including video libraries, image repositories, or even a completed data center migration. Transferring data with snowmobile is secure, fast and cost effective.
+
+\subsection*{Exam Tips}
+\begin{itemize}
+\item
+Understand what snowball is
+
+\item
+Understand what import export is
+
+\item
+Snowball can do import to S3 and export from S3
+
+\end{itemize}
+\section{Notes}
 \begin{itemize}
 \item
 Read the S3 FAQs before taking the exam. It comes up a lot.
 
+\item
+Understand the difference between a region, an availability zone(AZ) and an edge location
+	\begin{itemize}
+	\item
+	A region is a physical location in the world which sonsists of two or more Availability Zones (AZs)
+
+	\item
+	An AZ is one or more discrete data centers each with redundandt power, networking and connectivity, housed in seperate facilities
+
+	\item
+	Edge locations are endpoints for AWS which are used for caching content. Typically this consists of CloudFront, Amazon's Content Delivery Network (CDN)
+\end{itemize}
 
 
 \end{itemize}
