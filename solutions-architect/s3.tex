@@ -9,7 +9,7 @@
 \pagestyle{plain}
 \author{Rahul Daware}
 \begin{document}
-\title{Chapter 4: S3}
+\title{Chapter 4: Simple Storage Service (S3)}
 \maketitle
 \tableofcontents
 \newpage
@@ -495,5 +495,165 @@ Understand the difference between a region, an availability zone(AZ) and an edge
 	\item
 	Edge locations are endpoints for AWS which are used for caching content. Typically this consists of CloudFront, Amazon's Content Delivery Network (CDN)
 \end{itemize}
+
+\item
+Remember that S3 is object based i.e. allows you to upload files
+
+\item
+Files can be from 0 bytes to 5TB
+
+\item
+There is unlimited storage
+
+\item
+Files are stored in buckets
+
+\item
+S3 is a universal namespace, i.e. names must be unique globally.
+
+\item
+Bucket URL looks like : https://s3-eu-west-1.amazonaws.com/acloudguru
+
+\item
+Read after write consistency for PUTS of new objects
+
+\item
+Eventual Consistency for overwrite PUTS and DELETES (can take some time to propagate)
+
+\item
+S3 Storage Classes/Tiers
+	\begin{itemize}
+	\item
+	S3 - Durable, Immediately Available, Frequently Accessed)
+	
+	\item
+	S3 -IA (durable, imediately availablem infrequently accessed)
+	
+	\item
+	S3 - Reduced Redundancy Storage (data that is easily reproducible, such as thumbnails etc)
+	
+	\item
+	Glacier - Archived Data, where you can wait 3-5  hours before accessing
+	\end{itemize}
+
+\item
+Remember the core fundamentals of S3
+	\begin{itemize}
+	\item
+	Key(name)
+	
+	\item	
+	Value(data)
+	
+	\item
+	Version ID
+	
+	\item
+	Metadata
+	
+	\item
+	Access Control Lists
+	\end{itemize}
+
+\item
+Object based storage
+
+\item
+Not suitable to install an operating system on
+
+\item
+Stores all versions of an object (including all writes and even if you delete an object)
+
+\item
+Versioning is great backup tool
+
+\item
+Once enabled, versioning cannot be disabled, only suspended
+
+\item
+Versionng integrates with lifecycle rules
+
+\item
+Versioning's MFA Delete capability, which uses multi factor authentication, can be used to provide an additional layer of security
+
+\item
+Cross Region Replication, requires versioning enabled on source bucket as well as destination bucket
+
+\item
+Lifecycle management can be used in conjunction with versioning
+
+\item
+Lifecycle management can be applied to current and previoud versions
+
+\item
+Following actions can now be done :
+	\begin{itemize}
+	\item
+	Transition to the standard : Infrequent access storage class (128 KB and 30 days after the creation date)
+	
+	\item
+	Archive to the glacier storage class (30 days after IA, if relevant)
+	
+	\item
+	Permanently Delete
+	\end{itemize}
+
+\item
+CloudFront Edge Location - This is the location where content will be cached. This is seperate to an AWS Region/AZ
+
+\item
+Origin - This is the origin of all the files that CDN will distribute. This can be either an S3 Bucket, an EC2 instance, an elastic load balancer or Route 53
+
+\item
+Distribution - This is the name given the CDN which consists of a collection of Edge Locations
+	\begin{itemize}
+	\item
+	Web Distribution - Typically used for websites
+	
+	\item
+	RTMP - Used for Media Streaming
+	\end{itemize}
+	
+\item
+Edge locations are not just READ only, you can write to them too. (i.e. put an objects on to them)
+
+\item
+Objects are cached for the life of TTL
+
+\item
+You can clear cached objects, but you will be charged.
+
+\item
+By default, all newly created buckets are PRIVATE
+
+\item
+You can setup access controls to your buckets using:
+	\begin{itemize}
+	\item
+	Bucket Policies
+	
+	\item
+	Access Control Lists
+	\end{itemize}
+
+\item
+S3 Buckets can be configured to create access logs which log all requests made to the S3 Bucket. This can be done to another bucket.
+
+\item
+Encryption (Read encryption section)
+
+\item
+Storage Gateway (Read Storage Gateway section)
+
+\item
+You can load files to S3 much faster by enabling multipart upload
+
+\item
+I can have 100 S3 buckets per account by default
+
+\item
+Read S3 FAQ before taking the exam. It comes up a LOT!
 \end{itemize}
+
+
 \end{document}
