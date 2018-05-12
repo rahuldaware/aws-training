@@ -474,6 +474,9 @@ Understand what import export is
 \item
 Snowball can do import to S3 and export from S3
 
+\section{S3 Transfer Acceleration}
+S3 Transfer Acceleration utilises the CloudFront Edge Network to accelerate your uploads to S3. Instead of uploading directly to your S3 bucket, you can use a distinct URL to upload directly to an edge location which will then transfer that file to S3. 
+
 \end{itemize}
 \section{Notes}
 \begin{itemize}
@@ -492,7 +495,5 @@ Understand the difference between a region, an availability zone(AZ) and an edge
 	\item
 	Edge locations are endpoints for AWS which are used for caching content. Typically this consists of CloudFront, Amazon's Content Delivery Network (CDN)
 \end{itemize}
-
-
 \end{itemize}
 \end{document}
