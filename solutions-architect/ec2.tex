@@ -1,0 +1,254 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{color}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\pagestyle{plain}
+\author{Rahul Daware}
+\begin{document}
+\title{Chapter 5 : Elastic Compute Cloud (EC2)}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides computer capacity in the cloud. Amazon EC2 reduces the time required to obtain an boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
+
+Aamzon EC2 changes the economics of computing by allowing you to pay only for capacity that you will actually use. Amazon EC2 provides developers the tools to build failure resilient applications and isolate themselves from common failure scenarios.
+
+\section{EC2 Options}
+\begin{itemize}
+\item
+On Demand - allow you to pay a fixed rate by the hour (or by the second) with no commitment
+
+\item
+Reserved - Provide yo with a capacity reservation, and offer a significant discount on the hourly charge for an instance. 1 Year or 3 Year terms
+
+\item
+Spot - Enables you to bid whatever price you want for instance capacity,providing for even greater savings if your applications have flexible start and end times
+
+\item
+Dedicated Hosts - Physical EC2 server dedicated for your use. Dedicated hosts can help you reduce costs by allowing you to use your existing server-bound software licenses
+\end{itemize}
+
+\subsection{On Demand Instances}
+\begin{itemize}
+\item
+Users that want the low cost and flexibility of Amazon EC2 without any upfront payment or long term commitment
+
+\item
+Applications with short term, spiky, or unpredictable workloads that cannot be interrupted
+
+\item
+Applications being developed or tested on Amazon EC2 for the first time
+\end{itemize}
+
+\subsection{Reserved Instances}
+\begin{itemize}
+\item
+Applications with steady state or predictable usage
+
+\item
+Applications that require reserved capacity
+
+\item
+Users able to make upfront payments to reduce their total computing costs even further
+\begin{itemize}
+	\item
+	Standard Reserved Instances (Up to 75\% off on demand)
+	
+	\item
+	Convertible Reserved Instances (Up to 54\% off on demand) capability to change the attributes of the RI as long as the exchange results in the creation of reserved instances of equal or greater value
+	
+	\item
+	Scheduled Reserved Instances are available to launch within the time windows you reserve. This option allows you to match your capacity reservation to a predictable recurring schedule that only requires a fraction of a day, week, or a month.
+\end{itemize}
+\end{itemize}
+
+\subsection{Spot Instances}
+\begin{itemize}
+\item
+Applications that have flexible start and end times
+
+\item
+Application that are only feasible at very low compute prices
+
+\item
+Users with urgent computing needs for large amounts of additional capacity
+\end{itemize}
+
+\subsection{Dedicated Hosts}
+\begin{itemize}
+\item
+Useful for regulatory requirements that may not support multi tenant virtualization
+
+\item
+Great for licensing which does not support multi tenancy or cloud deployments
+
+\item
+Can be purchased on Demand (hourly)
+
+\item
+Can be purchased as a reservation for u to 70\% off on the on demand price
+\end{itemize}
+
+\section{EC2 Instance Types}
+
+\begin{center}
+  \begin{tabular}{ c | c | c }
+    \hline
+    \textbf{Family} & \textbf{Specialty} & \textbf{Use Case} \\ \hline
+     D2 & Dense Storage & Fileservers/Data Warehousing/Hadoop \\ \hline
+     R4 & Memory Optimized & Memory Intensize Apps/DBs \\ \hline
+     M4 & General Purpose & Application Servers \\ \hline
+     C4 & Compute Optimized & CPU Intensive Apps/DBs \\ \hline
+     G2 & Graphics Intensive & Video Encoding/3D Application Streaming \\ \hline
+     I2 & High Speed Storage & NoSQL DBs, Data Warehousing etc \\ \hline
+     F1 & Field Programmable Gate Array & Hardware acceleration for your code \\ \hline
+     T2 & Low Cost, General Purpose & Web Servers, Small DBs \\ \hline
+     P2 & Graphics/General purpose GPU & Machine Learning, Bit Coin Mining etc \\ \hline
+     X1 & Memory Optimized & SAP HAN, Apache Spark, etc \\
+    
+    \hline
+  \end{tabular}
+\end{center}
+
+\begin{itemize}
+\item
+D - Density
+
+\item
+R - RAM
+
+\item
+M - Main Choice for General Purpose Apps
+
+\item
+C - Compute
+
+\item
+G - Graphics
+
+\item
+I - IOPS
+
+\item
+F - FPGA
+
+\item
+T - Cheap General purpose (think T2 Micro)
+
+\item
+P - Graphics (think Pics)
+
+\item
+X - Extreme Memory
+
+\end{itemize}
+
+\section{Lab Summary}
+\begin{itemize}
+\item
+Termination Protection is turned off by default, you must turn it on.
+
+\item
+On an EBS backed instance, the default action is tfor the root EBS volume to be deleted when the instance is terminated.
+
+\item
+EBS root volumes of your default AMIs cannot be encrypted. You can also use a third party tool to encrypt the root volume, or this can be done when creating AMIs in the AWS console or using the API
+
+\item
+Additional volumes can be encrypted.
+
+\end{itemize}
+
+\section{Security Group Lab}
+\begin{itemize}
+\item
+All inbound traffic is blocked by default
+
+\item
+All outbound traffic is allowed
+
+\item
+Changes to security groups take effect immediately
+
+\item
+You can have any number of EC2 instances within a security group
+
+\item
+Security groups are stateful. If you create an inbound rule allowing traffic in, that traffic is automatically allowed back out again
+
+\item
+You can have multiple security groups attached to EC2 instances
+
+\item
+You cannot block specific IP addresses using security groups, instead use Network Access Control Lists
+\end{itemize}
+
+\section{Volumes and Snapshots}
+\begin{itemize}
+\item
+Volumes exist on EBS - Virtual Hard Disk
+
+\item
+Snapshots exist on S3
+
+\item
+Snapshots are point in time copies of Volumes
+
+\item
+Snapshots are incremental - this means that only the blocks that have changes your last snapshot are moved to S3
+
+\item
+If this is your first snapshot, then it will take some time to create
+
+\item
+To create a snapshot for Amazon EBS volumes that serve as root devices, you should stop the instance before taking the snapshot. However, you can take a snap while the instance is running
+
+\item
+You can create AMIs from EBS-backed instances and snapshots
+
+\item
+You can change EBS volume sizes on the fly,including changing the size and storage type
+
+\item
+Volumes will always be in the same availability zone as the EC2 instance
+
+\item
+To move an EC2 volume from one AZ/region to another, take a snap or an image of it, then copy it to the new AZ/region
+
+\item
+Snapshots of encrypted volumes are encrypted automatically
+
+\item
+Volumes restored from encrypted snapshots are encrypted automatically
+
+\item
+You can share snapshots, but only if they are unencrypted. These snapshots can be shared with other AWS accounts or made public
+
+
+\end{itemize}
+
+\section{Snapshots of Root Device Volumes}
+
+To create a snapshot for Amazon EBS volumes that serve as root devices, you should stop the instance before taking the snapshot
+
+\section{Volumes vs Snapshots}
+\begin{itemize}
+\item
+Snapshots of encrypted volumes are encrypted automatically
+
+\item
+Volumes restored from encrpted snapshots are encrypted automatically
+
+\item
+You can share snapshots, but only if they are encrypted. These snapshots can be shared with other AWS accounts or made public
+
+\end{itemize}
+
+
+\end{document}
