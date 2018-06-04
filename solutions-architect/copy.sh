@@ -1,1 +1,1 @@
-cp *.pdf ~/Dropbox/aws/solutions-architect-associate/
+cp -f *.pdf ~/Dropbox/aws/solutions-architect-associate/
