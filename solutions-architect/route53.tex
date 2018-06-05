@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{color}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\pagestyle{plain}
+\author{Rahul Daware}
+\begin{document}
+\title{Chapter 6 : Route 53}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\section{DNS 101}
+
+\subsection{Introduction}
+Top Level Domains are controlled bt the Internet Assigned Numbers Authority(IANA) in a root zone daabase which is essentially a database of all top level domains. This database can be viewed at http://www.iana.org/domains/root/db. Because all of the names in a given domain have to be unique there needs to be a way to organize this all so that domain names aren't duplicated. This is where domain registrars come in. A registrat is an authority that can assign domain names directly under one or more top-level domains. These domains are registered with InterNIC, a service of ICANN, which enforces uniqueness of domain names accross the internet. Each domain name becomes registered in a central database known as the WhoIS database. \\
+
+\subsection{SOA Record}
+The SOA record stores information about :
+\begin{itemize}
+\item
+The name of the server that supplied the data for the zone
+
+\item
+The administrator of the zone
+
+\item
+The current version of the data file
+
+\item
+The number of seconds a secondary name server should wait before checking for updates
+
+\item
+The number of seconds a secondary name server should wait before retring a failed zone transfer
+
+\item
+The maximum number of seconds that a secondary name server can use data before it must either be refreshed or expire
+
+\item
+The default number of seconds for the time to live file on resource records
+\end{itemize}
+
+\subsection{NS Records}
+NS stands for Name Server Records and are used by Top Level Domain Servers to direct traffic to the content DNS server which contains the authoritative DNS records.
+
+\subsection{A Records}
+An "A" record is the fundamental type of DNS record and the "A" in A record stands for "Address". The A record is used by a computer to translate the name of the domain to IP address.
+
+\subsection{TTL}
+The length that a DNS record is cached on either the resolving server or the users own local PC is equal to the value of the Time to Lice (TTL) in seconds. The lower the time to live the faster changes to DNS records to take to propogate throughout the internet
+
+\subsection{CNAMES}
+A Canonical Name (CName) can be used to resolve one domain name to another. For e.g., you may have a mobile website with the domain name that is used for when users browse to your domain name on their mobile devices. You may also want the name to resolve to this same address
+
+\subsection{Alias Records}
+Alias records are used to map resource record sets in your Elastic Load Balancers, CloudFront distributions, or S3 buckets that are configured as websites. Alias records wor klike a CNAME record in that you can map one DNS name to another 'target' DNS name. Key difference - A CNAME can't be used for naked comain names (zone apex). Alias resource record can save you time because Amazon Route 53 automaticall recognizes changes in the record sets that the alias resource record set refers to.
+
+\subsection{Exam Tips}
+\begin{itemize}
+\item
+ELBs do not have pre-defined IPv4 addresses, you resolve to them using a DNS name
+
+\item
+Understand the difference between an Alias record and a CNAME
+
+\item
+Given the choice, always choose an Alias Record over a CNAME
+
+\end{itemize}
+
+\section{Route53 Routing Policies}
+\begin{itemize}
+\item
+Simple
+
+\item
+Weighted
+
+\item
+Latency
+
+\item
+Failover
+
+\item
+Geolocation
+
+\end{itemize}
+
+\subsection{Simple}
+This is the default routing policy when you create a new record set. This is most commonly used when you have a single resource that performs a given function for your domain. For e.g., one web server that serves content for http://acloud.guru website.
+
+\subsection{Weighted}
+Weighted Routing Policies let you split your traffic based on different weights assigned. For e.g., you can set 10\% of your traffic to go to US-EAST1 and 90\% to go to EU-WEST-1.
+
+\subsection{Latency}
+Latency based routing allows you to route your traffic based on the lowest network latency for your end user(i.e. which region will give them the fastest response time). To use latency-based routing, you create a latency resource record set for the Amazon EC2(or ELB) resource in each region that hosts your website. When Amazon Route 53 receives a query for your site, it selects the latency resource record set for the region that gives the user the lowest latency. Route 53 then responds with the value associated with that resource record set.
+
+\subsection{Failover}
+Failover routing policies are used when you want to create an active/passive set up. For e.g., you may want your primary site to be in EU-WEST-2 and your secondary DR site in AP-SOUTHEAST-2. Route 53 will monitor the health of your primary site using a health check. A health check monitors the health of your endpoints.
+
+\subsection{Geolocation}
+Geolocation routing lets you choose where yur traffic will be sent based on the geographic location of your users (i.e. the location from which DNS queries originate). For e.g., you might want all queries from Europe to be routed to a fleet of EC2 instances that are specifically sonfigured for your European customers These ervers may have the local language of your European customers and all prices are displayed in Euros.
+
+\section{DNS Exam Tips}
+\begin{itemize}
+\item
+ELBs do not have pre defined IPv4 addresses, you resolve to them using a DNS name
+
+\item
+Understand the difference between an Alias Record and a CNAME
+
+\item
+Given the choice, always choose an Alias Record over a CNAME
+
+\item
+Remember the different routing policies and their use cases
+\end{itemize}
+
+\end{document}
