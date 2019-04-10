@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{color}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\pagestyle{plain}
+\author{Rahul Daware}
+\begin{document}
+\title{Identity Access Management and S3}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\section{Identity Access Management 101}
+
+IAM allows you to manage users and their level of access to the AWS console. It is important to understand IAM and how it works, both for the exam and for administering a company's AWS account in real life.
+
+\subsection{Features of IAM}
+\begin{itemize}
+\item
+Centralised control of your AWS account
+
+\item
+Shared access to your AWS account
+
+\item
+Granular permissions
+
+\item
+Identity Federation (including Active Directory, Facebook, Linkedin etc)
+
+\item
+Multifactor authentication
+
+\item
+Provide temporary access for users/devices and services where necessary
+
+\item
+Allows you to set up your own password rotation policy
+
+\item
+Integrates with many different AWS services
+
+\item
+Supports PCI DSS Compliance
+\end{itemize}
+
+\subsection{Key Terminology for IAM}
+\begin{itemize}
+\item
+\textbf{Users} - End users such as people, employees of an organization etc.
+
+\item
+\textbf{Groups} - A collection of users. Each user in the group will inherit permissions of the group.
+
+\item
+\textbf{Policies} - Policies are made up of documents, called policy documents. These documents are in a format called JSON and they five permissions as to what a user/group/role is able to do.
+
+\item
+\textbf{Roles} - You create roles and then assign them to AWS resources
+\end{itemize}
+
+\section{What is S3?}
+
+S3 provides developers and IT teams with secure, durable, highly-scalable object storage. Amazon S3 is easy to use, with a simple web services interface to store and retrieve any amount of data from anywhere on the web.
+
+	\subsection{Features of S3} 
+	\begin{itemize}
+	\item
+	S3 is a universal namespace. That is, names must be unique globally.
+	
+	\item
+	When you upload a file to S3, you will receive HTTP 200 code
+	
+	\item
+	S3 is Object based. Think of objects just as files. Objects consist of the 		following:
+		\begin{itemize}
+			\item
+			Key (this is simply the name of the object)
+			
+			\item
+			Value (This is simply the data and is made up of a sequence of 					bytes)
+			
+			\item
+			Version ID (Important for versioning)
+			
+			\item
+			Metadata (Data about data you are storing)
+			
+			\item
+			Subresources - Access Control Lists, Torrents
+		\end{itemize}
+	
+	\item
+	Tiered Storage Available
+	
+	\item
+	Lifecycle Management
+	
+	\item
+	Versioning
+	
+	\item
+	Encryption
+	
+	\item
+	MFA Delete
+	
+	\item
+	Secure your data using \textbf{Access Control Lists} and \textbf{Bucket 		Policies}
+	\end{itemize}
+
+	\subsection{How does data consistency work for S3?}
+	\begin{itemize}
+	\item
+	Read after write consistency for PUTS of new objects
+	
+	\item
+	Eventual consistency for overwrite PUTS and DELETES (can take some time to 		propagate)
+	\end{itemize}
+	
+	\subsection{S3 - Guarantees}
+	\begin{itemize}
+	\item
+	Build for 99.99\% availability ofr the S3 platform.
+	
+	\item
+	Amazon guarantee 99.9\% availability.
+	
+	\item
+	Amazon guarantees 99.999999999\% durability for S3 information. (Remember 11 x 9s)
+	\end{itemize}
+	
+	\subsection{S3 Storage Classes}
+	\begin{itemize}
+	\item
+	\textbf{S3 Standard} : 99.99\% availability, 99.99999999999\% durability, stored redundantly 		across multiple devices in multiple facilities, and is designed to sustain the loss of 2 	facilities concurrently.
+	
+	\item
+	\textbf{S3 - IA(infrequetly Accessed)}: For data that is accessed less frequently, but requires rapid access when needed. Lower fee than S3, but you are charged a retrieval fee.
+	
+	\item
+	\textbf{S3 One Zone - IA}: For where you want a lower-cost option for infrequently accessed data, but do not require the multiple availability zone data resilience.
+	
+	\item
+	\textbf{S3 - Intelligent Tiering}: Designed to optimize costs by automatically moving data to the most cost-effective access tier, without performance impact or operational overhead.
+	
+	\item
+	\textbf{S3 Glacier}: S3 Glacier is a secure, durable and low-cost storage class for data archiving. You can reliably store any amount of data at costs that are competitive with or cheaper than on-premises solutions. Retrieval times configurable from minutes to hours.
+	
+	\item
+	\textbf{S3 Glacier Deep Archive}: S3 Glacier Deep Archive is Amazon S3's lowest cost storage class where a retrieval time of 12 hours is acceptable.
+	\end{itemize}
+	
+	\subsection{S3- Charges}
+	\begin{itemize}
+	\item
+	Storage
+	
+	\item
+	Requests
+	
+	\item
+	Storage Management Pricing
+	
+	\item
+	Data Transfer Pricing
+	
+	\item
+	Transfer Acceleration
+	
+	\item
+	Cross Region Replication Pricing
+	\end{itemize}		
+\end{document}
