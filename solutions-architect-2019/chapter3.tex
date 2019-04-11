@@ -180,5 +180,108 @@ S3 provides developers and IT teams with secure, durable, highly-scalable object
 	\subsection{S3 Transfer Acceleration}
 	Amazon S3 Transfer Acceleration enables fast, easy and secure transfers of files over long distances between your end users and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. AS the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.
 	
+	\subsection{S3 Security and Encryption}
+	By default, all newly created buckets are PRIVATE. You can setup access control to your buckets using Bucket Policies and Access Control Lists. S3 Buckets can be configured to create access logs which log all requests made to the S3 bucket. This can be sent to another bucket and even another bucket in another account.\textbf{Encryption in Transit} is achieved by SSL/TLS. \textbf{Encryption at Rest (Server Side)} is achieved by:
+	\begin{itemize}
+	\item
+	S3 Managed Keys - SSE-S3, AWS
 	
+	\item
+	AWS Key Management Service, Managed Keys-SSE-KMS
+	
+	\item
+	Server Side Encryption with Customer Provided Keys-SSE-C
+	\end{itemize}	 
+	You can also encrypt on client side before sending to S3.
+	\subsection{S3 -Versioning}
+	\begin{itemize}
+	\item
+	Stores all versions of an object (including all writes and even if you delete an object)
+	
+	\item
+	Great Backup Tool
+	
+	\item
+	Once enabled, \textbf{versioning cannot be disabled}, only suspended
+	
+	\item
+	Integrates ith \textbf{Lifecycle} Rules
+	
+	\item
+	Versioning's \textbf{MFA Delete} capability, which uses multi-factor authentication, can be used to provide an additional layer of security.
+	\end{itemize}
+	
+	\subsection{S3 Lifecycle Management}
+	\begin{itemize}
+	\item
+	Automates moving your objects between the different storage tiers.
+	
+	\item
+	Can be used in conjunction with versioning.
+	
+	\item
+	Can be applied to current versions and previous versions.
+	\end{itemize}
+	
+	\subsection{S3 Cross Region Replication}
+	\begin{itemize}
+	\item
+	Versioning must be enabled on both the source and destination buckets.
+	
+	\item
+	Regions must be unique.
+	
+	\item
+	Files in an existing bucket are not replicated automatically.
+	
+	\item
+	All subsequent updated files will be replicated automatically.
+	
+	\item
+	Delete markers are not replicated.
+	
+	\item
+	Deleting individual versions or deleting delete markers will not be replicated.
+	\end{itemize}
+	
+	\subsection{S3 Transfer Acceleration}
+	S3 Transfer Acceleration utilises the CloudFront Edge NEtwork to accelerate your uploads to S3. Instead of uploading directly to your S3 bucket, you can use a distinct URL to upload directly to an edge location which will then transfer that file to S3. You will get a distinct URL to upload to in the format <bucket-name>.s3-accelerate.aws.amazon.com
+	
+	\subsection{CloudFront}
+	A content delivery network (CDN) is a system of distributed servers (network) that deliver webpages and other web content to a user based on the geographic locations of the user, the origin of the webpage, and a content delivery server.
+	
+	\begin{itemize}
+	\item
+	\textbf{Edge Location} - This is the location where content will be cached. This is separate to an AWS Region/AZ
+	
+	\item
+	\textbf{Origin} - This is the origin of all the files that the CDN will distribute. This can be an S3 bucket, an EC2 instance, an elastic load balancer, or Route53.
+	
+	\item
+	\textbf{Distribution} - This is the name given to the CDN which consists of a collection of edge locations.
+	\end{itemize}
+	
+	Amazon CloudFront can be used to deliver your entire website, including dynamic, static, streaming, and interactive content using a global network of edge locations. Tequests for your content are automatically routed to the nearest edge location, so content is delivered with the best possible perfomance.Types of CloudFront Distributions: 
+	\begin{itemize}
+	\item
+	Web Distribution - Typically used for websites
+	
+	\item
+	RTMP - Used for media streaming
+	\end{itemize}
+	
+	\subsection{Snowball}
+	Snowball is a petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data into and out of AWS. USing Snowball addresses common challenges with large-scale data transfers including high network costs, long transfer times, and security concerns.  Transferring data with snowball is simple, fast, secure and can be as little as one-fifth the cost of high speed internet. Snowball comes in either a 50TB or 80TB size. Snowball uses multiple layers of security designed to protect your data including tamper-resistant enclosures, 256-bit encryption, and an industry standard trusted platform module (TPM) designed to ensure boths security and full chain of custody of your data. Once the data transfer job has been processed and verfified, AWS performs a software erasure of the Snowball appliance. AWS Snowball Edge is a 100TB data transfer device with ob-board storage and compute capabilities. You can use Snowball Edge to move lage amounts of data into and out of AWS, as a temporary storage tier for large local datasets, or to support local workloads in remote or offline locations.  Snowball Edge connects to your existing applications and infrastructure using standard storage interfaces, streamlining the data transfer process and minimizing setup and integration. Snowball Edge can cluster together to form a local storage tier and process your data on-premises, helping ensure your applications continue to run even when they are not able to access the cloud. AWS Snowmobile is a Exabyte-scale data transfer service used to move extremely large amounts of data to AWS. You can transfer up to 100PB per snowmobile, a 45-foot long ruggedizds shipping container, pulled by a semi-trailer truck. Snowmobile makes it easy to move massive volumes of data to the cloud, including video libraries, image repositories, or even a complete data center migration. Transferring data with Snowmobile is secure, fast and cost effective.
+	
+	\begin{center}
+		\begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}|}		
+		\hline
+		Available Internet Connection & Theoretical Min. No. of days to transfer 100TB at 80\% network utilization & When to consider AWS Import/Export Snowball? \\
+	 	\hline
+	 	T3(44.736 Mbps) & 269 days & 2TB or more \\ 
+	 	100Mbps & 120 days & 5TB or more \\ 
+	 	1000Mbps & 12 days & 60TB or more \\ 
+	 	\hline
+		\end{tabular}
+	\end{center}
 \end{document}
