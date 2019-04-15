@@ -206,5 +206,42 @@ Magnetic
 		\end{tabular}
 \end{center}
 
+\subsection{Exam Tips}
+\begin{itemize}
+\item
+Volumes exist on EBS. Think of EBS as a virtual hard disk.
 
+\item
+Snapshots exist on S3. Think of snapshots as a photograph of the disk.
+
+\item
+Snapshots are point in time copies of volumes.
+
+\item
+Snapshots are incremental - this means that only the blocks that have changed since your last snapshot are moved to S3.
+
+\item
+If it is your first snapshot, it may take some time.
+
+\item
+To create a snapshot for Amazon EBS volumes that serve as root devices, you should stop the instance before taking the snapshot.
+
+\item
+However you can take a snap while the instance is running.
+
+\item
+You can create AMIs from both volumes and snapshots.
+
+\item
+You can change EBS volume sizes on the fly, inclusing changing the size and storage type.
+
+\item
+Volumes will ALWAYS be in the same availability zone as the EC2 instance.
+
+\item
+To move an EC2 volumes from one AZ to another, take a snapshot of it, create an AMI from the snapshot and then use the AMI to launch the EC2 instance in a new AZ.
+
+\item
+To move an EC2 volume from one region to another, take a snapshot of it, create an AMI from the snapshot, and then copy the AMI from one region to the other. Then use the copied AMI to launch the new EC2 instance in the new region.
+\end{itemize}
 \end{document}
