@@ -130,4 +130,81 @@ EBS Root Volumes of your DEFFAULT AMIs cannot be encrypted. You can use a third 
 \item
 Additional volumes can be encrypted.
 \end{itemize}
+
+\section{Security Groups Basics}
+\begin{itemize}
+\item
+All inbound traffic is blocked by default.
+
+\item
+All outbound traffic is allowed.
+
+\item
+Changes to security groups take effect immediately.
+
+\item
+You can have any number of EC2 instances within a security group.
+
+\item
+You can have multiple security groups attached to EC2 instances.
+
+\item
+Security Groups are STATEFUL.
+
+\item
+If you create an inbound rule allowing traffic in, that traffic is automatically allowed back out again.
+
+\item
+You cannot block specific IP addresses using security groups, instead use network access control lists.
+
+\item
+You can specify allow rules, but no deny rules
+
+\end{itemize}
+
+\section{EBS}
+Amazon Elastic Block Store (EBS) provides persistent block storage volumes for use with Amazon EC2 instances in the AWS cloud. Each Amazon EBS volume is automatically replicated within its availability zone to protect you from component failure, offering high availability and durability
+
+Types of EBS Storage:
+\begin{itemize}
+\item
+General purpose(SSD)
+
+\item
+Provisioned IOPS (SSD)
+
+\item
+Throughput optimised hard disk drive
+
+\item
+Cold hard disk drive
+
+\item
+Magnetic
+\end{itemize}
+\textbf{Solid State Drives:} 
+\begin{center}
+		\begin{tabular}{ |p{1.7cm}|p{6cm}|p{2cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+		\hline
+		\textbf{Volume Type} & \textbf{Description} & \textbf{Use Cases} & \textbf{API Name} & \textbf{Volume Size} & \textbf{Max IOPS} \\ 
+		\hline
+		General Purpose SSD & General Purpose SSD volume that balances price and performance for wide variety of transactional workloads & Most Work Loads & gp2 & 1GiB-16TiB & 16,000 \\ \hline
+		Provisioned IOPS SSED & highest-performance SSD volume designed for mission critical applications & Databases & io1 & 4GiB-16TiB & 64,000 \\ \hline
+		\end{tabular}
+\end{center}
+
+
+\textbf{Hard Disk Drives: }
+\begin{center}
+		\begin{tabular}{ |p{1.7cm}|p{6cm}|p{2cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+		\hline
+		\textbf{Volume Type} & \textbf{Description} & \textbf{Use Cases} & \textbf{API Name} & \textbf{Volume Size} & \textbf{Max IOPS} \\ 
+		\hline
+		Throughput Optimized HDD & Low cost HDD volume designed for frequently accessed, throughput intensive workloads & Big Data, Data Warehouses & st1 & 500GiB-16TiB & 500 \\ \hline
+		Cold HDD & Lowest cost HDD volume designed for less frequently accessed workloads & File servers & sc1 & 500GiB-16TiB & 250 \\ \hline
+		EBS Magnetic & Previous Generation HDD & Workloads where data is infrequently accessed & Standard & 1GiB-1TiB & 40-200 \\ \hline
+		\end{tabular}
+\end{center}
+
+
 \end{document}
