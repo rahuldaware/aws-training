@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{color}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\pagestyle{plain}
+\author{Rahul Daware}
+\begin{document}
+\title{EC2}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\section{EC2 101}
+Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable compute capacity in the cloud. Amazon EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
+
+EC2 Pricing Models:
+\begin{itemize}
+\item
+On Demand - Allows you to pay a fixed rate by the hour (or by the second) with no commitment
+
+\item
+Reserved - Provides you with a capacity reservation, and offe a significant discount on the hourly charge for an instance. Contract Terms are 1 Year or 3 Year Terms.
+
+\item
+Spot - Enables you to bid whatever price you want for instance capacity, providing for even great savings if your applications have flexible start and end times.
+
+\item
+Dedicated Hosts - Physical EC2 Server dedicated for your suse. Dedicated Hosts can help you reduce costs by allowing  you to use your existing server-bound software licenses.
+\end{itemize}
+
+\subsection{On Demand Pricing}
+\begin{itemize}
+\item
+Users that want the low cost and flexiblility of Amazon EC2 without any up-front payment or long term commitment
+
+\item
+Applications with short term, spiky, or unpredictable workloads that cannot be interrupted.
+
+\item
+Applications being developed or tested on Amazon EC2 for the first time.
+\end{itemize}
+
+\subsection{Reserved Pricing}
+\begin{itemize}
+\item
+Applications with steady state or predictable usage
+
+\item
+Applications that require reserved capacity
+
+\item
+Users able to make upfront payments to reduce their total computing costs even further
+
+\item
+\textbf{Standard Reserved Instances} - These offer up to 75\% off on demand instances. The more you pay up front and the longer the contract, the greater the discount.
+
+\item
+\textbf{Convertible Reserved Instances} - These offer up to 54\% off on demand capability to change the attrbutes of the RI as long as the exchange results in the creation of Reserved Instances of equal or greater value.
+
+\item
+\textbf{Scheduled Reserved Instances} - These are available to launch within the time windows tou reserve. This option allows you to match your capacity reservation to a predictable recurring schedule that only requires a fraction of a day, a week, or a month.
+\end{itemize}
+
+\subsection{Spot Pricing}
+\begin{itemize}
+\item
+Applications that have flexible start and end times
+
+\item
+Applications that are only feasible at very low compute prices
+
+\item
+Users with urgent computing needs for large amounts of additional capacity
+\end{itemize}
+
+\subsection{Dedicated Hosts Pricing}
+\begin{itemize}
+\item
+Useful for regulatory requirements that may not support multi-tenant virtualization
+
+\item
+Great for licensing which does not support multi-tenancy or cloud deployments
+
+\item
+Can be purchased On-Demand (hourly)
+
+\item
+Can be purchased as a reservation for up to 70\% off the on-demand price
+\end{itemize}
+
+\subsection{EC2 Instance Types}
+	\begin{center}
+		\begin{tabular}{ |p{1.5cm}|p{5cm}|p{8cm}|}		
+		\hline
+		\textbf{Family} & \textbf{Specialty} & \textbf{Use Case} \\
+	 	\hline
+	 	F1 & Field Programmable Gate Array & Genomics research. financial analytics, real-time video processing, big data etc \\ \hline
+	 	I3 & High Speed Storage & NoSQL DBs, Data Warehousing etc \\ \hline
+	 	G3 & Graphics Intensive & Video Encoding, 3D Application Streaming \\\hline
+	 	H1 & High Disk Throughput & MapReduce based workloads, distributed file systems such as HDFS and MapR-FS \\ \hline
+	 	T3 & Lowest Cost, General Purpose & Web Servers/Small DBs \\ \hline
+	 	D2 & Dense Storage & Fileservers/Data Warehousing/ Hadoop \\ \hline
+	 	R5 & Memory Optimized & Memory Intensive Apps/ DBs \\ \hline
+	 	M5 & General Purpose & Application Servers \\ \hline
+	 	C5 & Compute Optimized & CPU Intensive Apps/ DBs \\ \hline
+	 	P3 & Graphics/ General Purpose GPU & Machine Learning , Bit Coing Mining etc \\ \hline
+	 	X1 & Memory Optimized & SAP HANA/Apache Spark etc \\ \hline
+	 	Z1D & High compute capacity and a high memory footprint & Ideal for electronic design automation (EDA) and certain relational database workloads with high per-core licensing costs. \\ \hline
+	 	A1 & Arm-based workloads & Scale out workloads such as web servers \\ \hline
+	 	U-6tb1 & Bare Metal & Bare Metal Capabilities that eliminate virtualization overhead \\	 	
+	 	\hline
+		\end{tabular}
+	\end{center}
+\subsection{Exam Tips}
+\begin{itemize}
+\item
+Termination Protection is turned off by default, you must turn it on.
+
+\item
+On an EBS-back instance, the default action is for the root EBS volume to be deleted when the instance is terminated.
+
+\item
+EBS Root Volumes of your DEFFAULT AMIs cannot be encrypted. You can use a third party tol (such as bit locker etc) to encrypt the root volume, or this can be done when creating AMIs in the AWS console or using the API.
+
+\item
+Additional volumes can be encrypted.
+\end{itemize}
+\end{document}
