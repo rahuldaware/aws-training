@@ -382,4 +382,80 @@ CloudWatch events helps you to respond to state changes in your AWS resources.
 CloudWatch logs helps you to aggregate, monitor and store logs.
 \end{itemize}
 
+\section{IAM Roles}
+\begin{itemize}
+\item
+Roles are more secure than storing your access key and secret access key on individual EC2 instances
+
+\item
+Roles are easier to manage
+
+\item
+Roles can be assigned to an EC2 instance after it is created using both the console and command line
+
+\item
+Roles are universal - you can use them in any region
+\end{itemize}
+
+\section{Instance MetaData}
+\begin{itemize}
+\item
+Used to get information about an instance (such as public ip)
+
+\item
+Meta Data: curl http://169.254.169.254/latest/meta-data/
+
+\item
+User Data: curl http://169.254.169.254/latest/meta-data/
+\end{itemize}
+
+\section{Elastic File System (EFS)}
+Amazon Elastic File System (Amazon EFS) is a file storage service for Amazon Elastic Compute Cloud (EC2) instances. Amazon EFS is easy to use and provides a simple interface that allows you to create and configure file systems quickly and easily. With Amazon EFs, storage capacity is elastic, growing and shrinking automatically as you add and remove files, so yout applications have the storage they need, when they need it.
+
+\subsection{Exam Tips}
+\begin{itemize}
+\item
+Supports the network file system version 4 (NFSv4) protocol
+
+\item
+You only pay for the storage you use (no pre-provisioning required)
+
+\item
+Can scale up to petabytes
+
+\item
+Can support thousands of concurrent NFS connections
+
+\item
+Data is stored across multiple AZs within a region
+
+\item
+Read after write consistency
+\end{itemize}
+
+\section{EC2 Placement Groups}
+\subsection{Clustered Placement Group}
+A cluster placement group is a group of instances within a single Availability Zone. Placement groups are recommended for applications that need low network latency, high network throughput, or both. Only a certain instance can be launched in to a clustered placement group. they cannot span multiple AZs.
+
+\subsection{Spread Placement Group}
+A spread placement group is a group of instances that are each places on distinct underlying hardware. Spread placement groups are recommended for applications that have a small number of critical instances that should be kept separate from each other. The can span on multiple AZs
+
+\subsection{Exam Tips}
+\begin{itemize}
+\item
+The name you specify for a placement group must be unique within your AWS account.
+
+\item
+Only certain types of instances can be launched in a placement group (Compute Optimized, GPU, Memory Optimized, Storage Optimized)
+
+\item
+AWS recommend homogeneous instances within placement groups.
+
+\item
+You cant merge placement groups
+
+\item
+You cant move an existing instance into a placement group. You can create an AMI from your existing instance and then launch a new instance from the AMI into a placement group.
+
+\end{itemize}
 \end{document}
